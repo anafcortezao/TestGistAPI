@@ -1,0 +1,42 @@
+package steps;
+
+import io.cucumber.java.en.*;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.asserts.SoftAssert;
+
+import static io.restassured.RestAssured.get;
+import utils.RestInterface;
+
+
+public class ListGistsSteps {
+    private Response response;
+    private String userName;
+    private SoftAssert softAssertion= new SoftAssert();
+    private RestInterface rest;
+
+    public ListGistsSteps(){
+        this.rest = new RestInterface();
+    }
+
+    @Given("I have an user")
+    public void iHaveAnUser() {
+        userName = "anafcortezao";
+    }
+
+    @When("I get a gists list for the user")
+    public void iGetAGistsListForTheUser() {
+        RestAssured.baseURI = "https://api.github.com/";
+        response = rest.getListGistsForUser(userName);
+        //System.out.println(response.asString());
+    }
+
+    @Then("All public gists for the user are list")
+    public void allPublicGistsForTheUserAreList() {
+        softAssertion.assertEquals(response.getStatusCode(),200);
+        softAssertion.assertNotNull(response.asString());
+        softAssertion.assertAll();
+    }
+
+
+}
