@@ -12,6 +12,8 @@ import org.testng.Assert;*/
 
 public class RestInterface {
     private Response response;
+    //private RestAssured.baseURI = "https://api.github.com/";
+
     public RestInterface(){
 
     }
