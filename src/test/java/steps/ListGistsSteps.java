@@ -1,11 +1,8 @@
 package steps;
 
 import io.cucumber.java.en.*;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
-
-import static io.restassured.RestAssured.get;
 import utils.RestInterface;
 
 
@@ -26,9 +23,7 @@ public class ListGistsSteps {
 
     @When("I get a gists list for the user")
     public void iGetAGistsListForTheUser() {
-        RestAssured.baseURI = "https://api.github.com/";
         response = rest.getListGistsForUser(userName);
-        //System.out.println(response.asString());
     }
 
     @Then("All public gists for the user are list")
