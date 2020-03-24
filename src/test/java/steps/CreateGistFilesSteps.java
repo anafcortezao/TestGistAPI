@@ -5,13 +5,10 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
-import io.restassured.specification.RequestSpecification;
 import utils.Config;
-import utils.RestInterface;
 
-import java.util.HashMap;
+public class CreateGistFilesSteps extends Config{
 
-public class CreateAGist extends Config{
     //private RestInterface restRequest;
     private SoftAssert softAssertion= new SoftAssert();
     private Response response;
@@ -26,10 +23,10 @@ public class CreateAGist extends Config{
         String payload = "{\"description\": \"Assigment3\",\"public\": true,\"files\": {\"testes3.txt\": {\"content\": \"Testes Aut para assigment\"}}}";
 
         response = RestAssured.given()
-                    .contentType(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .auth().oauth2(token)
                 .with()
-                    .body(payload)
+                .body(payload)
                 .when().post("/gists");
 
         //response = restRequest.postRequest(payload, "/gists");
@@ -42,3 +39,4 @@ public class CreateAGist extends Config{
         softAssertion.assertAll();
     }
 }
+
