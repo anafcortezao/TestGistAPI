@@ -16,7 +16,7 @@ public class RestInterface extends Config{
 
 
     public RestInterface(){
-        RestAssured.baseURI = "https://api.github.com/";
+        RestAssured.baseURI = urlBase;
     }
 
     public Response postRequest(String bodyRequest,String path) {

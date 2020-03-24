@@ -21,6 +21,7 @@ public class CreateGistFilesSteps extends Config{
     @When("I add a new gist with files")
     public void iAddANewGistWithFiles() {
         String payload = "{\"description\": \"Assigment3\",\"public\": true,\"files\": {\"testes3.txt\": {\"content\": \"Testes Aut para assigment\"}}}";
+        RestAssured.baseURI = urlBase;
 
         response = RestAssured.given()
                 .contentType(ContentType.JSON)
