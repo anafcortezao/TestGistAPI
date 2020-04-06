@@ -31,4 +31,4 @@ To run the tests run the class RunAllTests.java (src > test> java > runners)
 
 ### References
 
-[Gists] (https://developer.github.com/v3/gists/)
+[Gists](https://developer.github.com/v3/gists/)
