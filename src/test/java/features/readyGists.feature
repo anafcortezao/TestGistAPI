@@ -3,7 +3,3 @@ Feature: List gists
     Given I have an user
     When I get a gists list for the user
     Then All public gists for the user are list
-
-    #Examples:
-    #|user|
-    #|"anafcortezao"|
