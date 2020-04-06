@@ -1,23 +1,22 @@
 package steps;
 
 import io.cucumber.java.en.*;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
-import utils.Config;
+import utils.RestInterface;
 
-public class DeleteGistSteps extends Config {
+public class DeleteGistSteps{
+    private RestInterface restRequest;
     private SoftAssert softAssertion= new SoftAssert();
     private Response response;
 
+    public DeleteGistSteps(){
+        this.restRequest = new RestInterface();
+    }
+
     @When("I delete the gist file")
     public void iDeleteTheGistFile() {
-        RestAssured.baseURI = urlBase;
-        response = RestAssured.given()
-                .contentType(ContentType.JSON)
-                .auth().oauth2(token)
-                .when().delete("/gists/"+"4febe38d94dd8ca5411f3d82aeca29a9");
+        response = restRequest.deleteRequest();
     }
 
     @Then("The gist file is deleted")

@@ -37,4 +37,12 @@ public class RestInterface extends Config{
         return response;
     }
 
+    public  Response deleteRequest(){
+        response = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .auth().oauth2(token)
+                .when().delete("/gists/"+"fbb868285d4b16bdfbf26933683e7242");
+        return response;
+    }
+
 }
