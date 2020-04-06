@@ -23,11 +23,11 @@ To run the tests run the class RunAllTests.java (src > test> java > runners)
 
 ### Todo
 
-Improve the structure
-Create Data Driven
-Encapsulation
-Create negative scenarios
-Create scenarios to other APIs
+1. Improve the structure
+2. Create Data Driven
+3. Encapsulation
+4. Create negative scenarios
+5. Create scenarios to other APIs
 
 ### References
 
