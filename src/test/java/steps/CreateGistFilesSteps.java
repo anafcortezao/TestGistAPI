@@ -6,36 +6,34 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
 import utils.Config;
+import utils.RestInterface;
 
 public class CreateGistFilesSteps extends Config{
 
-    //private RestInterface restRequest;
+    private RestInterface restRequest;
     private SoftAssert softAssertion= new SoftAssert();
     private Response response;
+    private String fileData;
 
-    @Given("I have a token")
-    public void iHaveAToken() {
+    public CreateGistFilesSteps(){
+        this.restRequest = new RestInterface();
+    }
+
+    @Given("I want to create a gist file")
+    public void iWantToCreateAGistFile() {
+        fileData = "{\"description\": \"Tests1\",\"public\": true,\"files\": {\"testes5.txt\": {\"content\": \"Tests created file\"}}}";
 
     }
 
     @When("I add a new gist with files")
     public void iAddANewGistWithFiles() {
-        String payload = "{\"description\": \"Assigment3\",\"public\": true,\"files\": {\"testes3.txt\": {\"content\": \"Testes Aut para assigment\"}}}";
-        RestAssured.baseURI = urlBase;
 
-        response = RestAssured.given()
-                .contentType(ContentType.JSON)
-                .auth().oauth2(token)
-                .with()
-                .body(payload)
-                .when().post("/gists");
-
-        //response = restRequest.postRequest(payload, "/gists");
+        response = restRequest.postRequest("/gists", fileData);
     }
 
     @Then("The gist with the files is created")
     public void theGistWithTheFilesIsCreated() {
-        softAssertion.assertEquals(response.getStatusCode(),200);
+        softAssertion.assertEquals(response.getStatusCode(),201);
         softAssertion.assertNotNull(response.asString());
         softAssertion.assertAll();
     }
