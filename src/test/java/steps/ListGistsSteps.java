@@ -8,7 +8,6 @@ import utils.RestInterface;
 
 public class ListGistsSteps {
     private Response response;
-    private String userName;
     private SoftAssert softAssertion= new SoftAssert();
     private RestInterface rest;
 
@@ -18,12 +17,11 @@ public class ListGistsSteps {
 
     @Given("I have an user")
     public void iHaveAnUser() {
-        userName = "anafcortezao";
     }
 
     @When("I get a gists list for the user")
     public void iGetAGistsListForTheUser() {
-        response = rest.getListGistsForUser(userName);
+        response = rest.getListGistsForUser();
     }
 
     @Then("All public gists for the user are list")
