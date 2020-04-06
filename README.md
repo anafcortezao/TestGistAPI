@@ -33,6 +33,8 @@ To run the tests run the class RunAllTests.java (src > test> java > runners)
 
 5. Create scenarios to other APIs
 
+6. Fix assertions
+
 ### References
 
 [Gists](https://developer.github.com/v3/gists/)
