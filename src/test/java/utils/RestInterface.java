@@ -27,4 +27,14 @@ public class RestInterface extends Config{
         return response;
     }
 
+    public Response patchRequest(String payload){
+        response = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .auth().oauth2(token)
+                .with()
+                .body(payload)
+                .when().patch("/gists/"+"5bd0375ed5a5a03c698a7b8f8fb3b738");
+        return response;
+    }
+
 }

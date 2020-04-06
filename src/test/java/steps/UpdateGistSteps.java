@@ -1,32 +1,28 @@
 package steps;
 
 import io.cucumber.java.en.*;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
-import utils.Config;
+import utils.RestInterface;
 
-public class UpdateGistSteps extends Config {
+public class UpdateGistSteps{
+    private RestInterface restRequest;
     private SoftAssert softAssertion= new SoftAssert();
     private Response response;
+    private  String updateData;
 
-    @Given("I have a gist")
-    public void iHaveAGist() {
+    public UpdateGistSteps(){
+        this.restRequest = new RestInterface();
+    }
+
+    @Given("I have a gist file")
+    public void iHaveAGistFile() {
+        updateData = "{\"description\": \"Assigment\",\"files\": {\"testes.txt\": {\"content\": \"Updated Tests\",\"filename\": \"testes.txt\"}}}";
     }
 
     @When("I update the gist file")
     public void iUpdateTheGistFile() {
-        String payload = "{\"description\": \"Assigment\",\"files\": {\"testes.txt\": {\"content\": \"Updated Test\",\"filename\": \"testes.txt\"}}}";
-        RestAssured.baseURI = urlBase;
-
-        response = RestAssured.given()
-                .contentType(ContentType.JSON)
-                .auth().oauth2(token)
-                .with()
-                .body(payload)
-                .when().patch("/gists/"+"5bd0375ed5a5a03c698a7b8f8fb3b738");
-        System.out.println(response);
+        response = restRequest.patchRequest(updateData);
     }
 
     @Then("The gist file is updated")
